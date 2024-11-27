@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Carousel</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #222;
+    }
+    .carousel {
+      position: relative;
+      width: 80%;
+      max-width: 800px;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      width: calc(100% * 5); /* 假设有5张图片 */
+    }
+    .carousel-slide {
+      min-width: 100%;
+      box-sizing: border-box;
+    }
+    .carousel-slide img {
+      width: 100%;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="carousel">
+    <div class="carousel-track">
+      <div class="carousel-slide"><img src="photo1.jpg" alt="Photo 1"></div>
+      <div class="carousel-slide"><img src="photo2.jpg" alt="Photo 2"></div>
+      <div class="carousel-slide"><img src="photo3.jpg" alt="Photo 3"></div>
+      <div class="carousel-slide"><img src="photo4.jpg" alt="Photo 4"></div>
+      <div class="carousel-slide"><img src="photo5.jpg" alt="Photo 5"></div>
+    </div>
+  </div>
+
+  <script>
+    const track = document.querySelector('.carousel-track');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const slideCount = slides.length;
+    let currentIndex = 0;
+
+    function moveToNextSlide() {
+      currentIndex = (currentIndex + 1) % slideCount;
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    setInterval(moveToNextSlide, 3000); // 每3秒切换一次
+  </script>
+</body>
+</html>
